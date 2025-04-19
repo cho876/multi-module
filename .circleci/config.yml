@@ -23,14 +23,14 @@ commands:
             INCLUDED_LIST=""
             for DIR in CHANGED_MODULES; do
               if [ -f "$DIR/.circle/config.yml" ]; then
-                INCLUDED_LIST="${INCLUDED_LIST}{\"include\": \"$DIR/.circle/config.yml\"},"
+                INCLUDED_LIST='${INCLUDED_LIST}{"include": "$DIR/.circle/config.yml"},'
               fi
             done
             
             if [ -z "$INCLUDED_LIST" ]; then
-              echo '{\"include\": ".circleci/fallback.yml"}' > .circleci/merged_pipeline.json
+              echo '{"include": ".circleci/fallback.yml"}' > .circleci/merged_pipeline.json
             else
-              echo '{\"include\": [${INCLUDED_LIST%,}]}' > .circleci/merged_pipeline.json
+              echo '{"include": [${INCLUDED_LIST%,}]}' > .circleci/merged_pipeline.json
             fi
 
   print-pipeline-file:
