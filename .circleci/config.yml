@@ -28,7 +28,7 @@ commands:
             done
             
             if [ -z "$INCLUDED_LIST" ]; then
-              printf '%s\n' '{ "include": [ { "include": ".circleci/fallback.yml" } \ }' > .circleci/merged_pipeline.json
+              printf '%s\n' '{ "include": [ { "include": ".circleci/fallback.yml" } ] }' > .circleci/merged_pipeline.json
             else
               printf '{"include": [$s]}\n' "${INCLUDED_LIST%,}" > .circleci/merged_pipeline.json
             fi
