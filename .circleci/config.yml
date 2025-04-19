@@ -28,7 +28,7 @@ commands:
             done
             
             if [ -z "$INCLUDED_LIST" ]; then
-              echo '{\"include\": ".circleci/fallback.yml"' > .circleci/merged_pipeline.json
+              echo '{\"include\": ".circleci/fallback.yml"}' > .circleci/merged_pipeline.json
             else
               echo '{\"include\": [${INCLUDED_LIST%,}]}' > .circleci/merged_pipeline.json
             fi
