@@ -38,7 +38,7 @@ commands:
       - run:
           name: Print generated pipeline's file
           command: |
-            echo "--- Merged Pipeline JSON ---"
+            echo "--- Merged Pipeline JSON!! ---"
             cat .circleci/merged_pipeline.json || echo "File not found"
 
 jobs:
