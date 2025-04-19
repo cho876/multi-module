@@ -1,11 +1,10 @@
-package com.kwonnee.itemapi
+package com.kwonnee.accountapi
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class ItemApiApplication
-
-fun main(args: Array<String>) {
-    runApplication<ItemApiApplication>(*args)
+class ApiApplication
+fun main(args: Array<String>){
+    runApplication<ApiApplication>(*args)
 }
