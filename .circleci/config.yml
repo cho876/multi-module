@@ -49,6 +49,7 @@ jobs:
       - attach_workspace:
           at: ~/multi-module
       - generate-detected-pipeline
+      - print-pipeline-file
       - persist_to_workspace:
           root: .
           paths:
