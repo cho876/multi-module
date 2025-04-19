@@ -33,6 +33,13 @@ commands:
               echo '{\"include\": [${INCLUDED_LIST%,}]}' > .circleci/merged_pipeline.json
             fi
 
+  print-pipeline-file:
+    steps:
+      - run:
+          name: Print generated pipeline's file
+          command: |
+            echo "--- Merged Pipeline JSON ---"
+            cat .circleci/merged_pipeline.json || echo "File not found"
 
 jobs:
   setup-ci-pipeline:
@@ -42,6 +49,10 @@ jobs:
       - attach_workspace:
           at: ~/multi-module
       - generate-detected-pipeline
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .circle/merged_pipeline.json
       - continuation/continue:
           configuration_path: .circleci/merged_pipeline.json
 
