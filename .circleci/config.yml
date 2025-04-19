@@ -52,7 +52,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - .circle/merged_pipeline.json
+            - .circleci/merged_pipeline.json
       - continuation/continue:
           configuration_path: .circleci/merged_pipeline.json
 
