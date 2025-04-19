@@ -1,0 +1,13 @@
+version: 2.1
+
+jobs:
+  item-api-echo:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run: echo "Item config entered"
+
+workflows:
+  item-api-welcome:
+    jobs:
+      - item-api-echo

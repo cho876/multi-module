@@ -1,0 +1,13 @@
+version: 2.1
+
+jobs:
+  account-api-echo:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run: echo "Account config entered"
+
+workflows:
+  account-api-welcome:
+    jobs:
+      - account-api-echo

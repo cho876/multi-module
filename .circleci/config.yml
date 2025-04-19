@@ -1,0 +1,49 @@
+version: 2.1
+setup: true
+
+orbs:
+  continuation: circleci/continuation@0.1.2
+
+
+executors:
+  setup-executor:
+    docker:
+      - image: cimg/base:stable
+    working_directory: ~/multi-module
+
+
+commands:
+  generate-detected-pipeline:
+    steps:
+      - run:
+          name: Detect all changed domain & Generate pipeline.
+          commands: |
+            CHANGED_MODULES=$(git diff --name-only HEAD~1 | cut -d/ -f1 | sort -u)
+            
+            INCLUDED_LIST=""
+            for DIR in CHANGED_MODULES; do
+              if [ -f "$DIR/.circle/config.yml" ]; then
+                INCLUDED_LIST="${INCLUDED_LIST}{\"include\": \"$DIR/.circle/config.yml\"},"
+              fi
+            done
+            
+            if [ -z "$INCLUDED_LIST" ]; then
+              echo '{\"include\": ".circleci/fallback.yml"' > .circleci/merged_pipeline.json
+            else
+              echo '{\"include\": [${INCLUDED_LIST%,}]}' > .circleci/merged_pipeline.json
+            fi
+
+
+jobs:
+  setup-ci-pipeline:
+    steps:
+      - attach_workspace:
+          at: ~/multi-module
+      - generate-detected-pipeline
+      - continuation/continue:
+          configuration_path: .circleci/merged_pipeline.json
+
+workflows:
+  setup:
+    jobs:
+      setup-ci-pipeline

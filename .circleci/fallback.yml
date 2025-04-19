@@ -1,0 +1,13 @@
+version: 2.1
+
+jobs:
+  fallback-notify:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run: echo "No changes detected. Skipping build."
+
+workflows:
+  fallback:
+    jobs:
+      - fallback-notify
