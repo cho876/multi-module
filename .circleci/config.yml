@@ -17,7 +17,7 @@ commands:
     steps:
       - run:
           name: Detect all changed domain & Generate pipeline.
-          commands: |
+          command: |
             CHANGED_MODULES=$(git diff --name-only HEAD~1 | cut -d/ -f1 | sort -u)
             
             INCLUDED_LIST=""
