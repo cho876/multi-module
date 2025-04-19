@@ -48,4 +48,4 @@ jobs:
 workflows:
   setup:
     jobs:
-      setup-ci-pipeline
+      - setup-ci-pipeline
