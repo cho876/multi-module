@@ -36,7 +36,9 @@ commands:
 
 jobs:
   setup-ci-pipeline:
+    executor: setup-executor
     steps:
+      - checkout
       - attach_workspace:
           at: ~/multi-module
       - generate-detected-pipeline
